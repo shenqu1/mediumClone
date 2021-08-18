@@ -6,12 +6,16 @@ import {AppComponent} from './app.component'
 import {AuthModule} from './auth/auth.module'
 import {StoreModule} from '@ngrx/store'
 import {StoreDevtoolsModule} from '@ngrx/store-devtools'
-import {environment} from 'src/environments/environment'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {EffectsModule} from '@ngrx/effects'
 import {TopBarModule} from './shared/modules/topBar/topBar.module'
 import {PersistanceService} from './shared/services/persistance.service'
 import {AuthInterceptor} from './shared/services/authinterceptor.service'
+import {GlobalFeedModule} from './globalFeed/globalFeed.module'
+import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store'
+import {environment} from '../environments/environment'
+import {YourFeedModule} from './yourFeed/yourFeed.module'
+import {TagFeedModule} from './tagFeed/tagFeed.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,13 +24,21 @@ import {AuthInterceptor} from './shared/services/authinterceptor.service'
     HttpClientModule,
     AppRoutingModule,
     AuthModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({router: routerReducer}),
+    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
     TopBarModule,
+    GlobalFeedModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    YourFeedModule,
+    TagFeedModule,
   ],
   providers: [
     PersistanceService,
