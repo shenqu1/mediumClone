@@ -16,6 +16,9 @@ import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store'
 import {environment} from '../environments/environment'
 import {YourFeedModule} from './yourFeed/yourFeed.module'
 import {TagFeedModule} from './tagFeed/tagFeed.module'
+import {ArticleModule} from './article/article.module'
+import {CreateArticleModule} from './createArticle/createArticle.module'
+import {EditArticleModule} from './EditArticle/editArticle.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,6 +42,9 @@ import {TagFeedModule} from './tagFeed/tagFeed.module'
     }),
     YourFeedModule,
     TagFeedModule,
+    CreateArticleModule,
+    ArticleModule,
+    EditArticleModule,
   ],
   providers: [
     PersistanceService,
